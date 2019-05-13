@@ -1,0 +1,36 @@
+diff -ur gsoap-2.7.orig/gsoap/typemap.dat gsoap-2.7/gsoap/typemap.dat
+--- gsoap-2.7.orig/gsoap/typemap.dat	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/typemap.dat	2017-08-01 16:05:07.422473316 +0200
+@@ -91,7 +91,7 @@
+ #	Use LONG64 int for xsd:duration (with high ms precision):
+ #	Note: compile and link custom/duration.c
+ 
+-xsd__duration = #import "custom/ducation.h" | xsd__duration
++xsd__duration = #import "custom/duration.h" | xsd__duration
+ 
+ #	Prefix bindings for WhiteMesa interoperability testing round 2:
+ 
+diff -ur gsoap-2.7.orig/gsoap/WS/typemap.dat gsoap-2.7/gsoap/WS/typemap.dat
+--- gsoap-2.7.orig/gsoap/WS/typemap.dat	2010-04-06 18:23:15.000000000 +0200
++++ gsoap-2.7/gsoap/WS/typemap.dat	2017-08-01 16:07:32.231256164 +0200
+@@ -91,7 +91,7 @@
+ #	Use LONG64 int for xsd:duration (with high ms precision):
+ #	Note: compile and link custom/duration.c
+ 
+-xsd__duration = #import "custom/ducation.h" | xsd__duration
++xsd__duration = #import "custom/duration.h" | xsd__duration
+ 
+ #	Prefix bindings for WhiteMesa interoperability testing round 2:
+ 
+diff -ur gsoap-2.7.orig/gsoap/wsdl/typemap.dat gsoap-2.7/gsoap/wsdl/typemap.dat
+--- gsoap-2.7.orig/gsoap/wsdl/typemap.dat	2010-04-06 18:23:16.000000000 +0200
++++ gsoap-2.7/gsoap/wsdl/typemap.dat	2017-08-01 16:07:48.236232163 +0200
+@@ -91,7 +91,7 @@
+ #	Use LONG64 int for xsd:duration (with high ms precision):
+ #	Note: compile and link custom/duration.c
+ 
+-xsd__duration = #import "custom/ducation.h" | xsd__duration
++xsd__duration = #import "custom/duration.h" | xsd__duration
+ 
+ #	Prefix bindings for WhiteMesa interoperability testing round 2:
+ 

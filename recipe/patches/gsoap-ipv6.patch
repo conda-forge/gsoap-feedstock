@@ -1,0 +1,165 @@
+diff -ur gsoap-2.7.orig/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp gsoap-2.7/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp	2010-04-06 18:22:54.000000000 +0200
++++ gsoap-2.7/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp	2011-08-28 10:05:28.091810439 +0200
+@@ -4106,10 +4106,10 @@
+   struct addrinfo hints;
+   struct addrinfo res;
+   int err;
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_NO_IPV6_V6ONLY
+   int unset = 0;
+-#ifdef SOL_IP
+-  int level = SOL_IP;
++#ifdef SOL_IPV6
++  int level = SOL_IPV6;
+ #else
+   int level = IPPROTO_IPV6;
+ #endif
+@@ -4211,7 +4211,14 @@
+ #endif
+ #endif
+ #ifdef WITH_IPV6
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_IPV6_V6ONLY
++  if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&set, sizeof(int)))
++  { soap->errnum = soap_socket_errno(soap->master);
++    soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
++    return SOAP_INVALID_SOCKET;
++  }
++#endif
++#ifdef WITH_NO_IPV6_V6ONLY
+   if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&unset, sizeof(int)))
+   { soap->errnum = soap_socket_errno(soap->master);
+     soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
+diff -ur gsoap-2.7.orig/gsoap/samples/wsse/stdsoap2.c gsoap-2.7/gsoap/samples/wsse/stdsoap2.c
+--- gsoap-2.7.orig/gsoap/samples/wsse/stdsoap2.c	2010-04-06 18:23:12.000000000 +0200
++++ gsoap-2.7/gsoap/samples/wsse/stdsoap2.c	2011-08-28 10:05:28.094810400 +0200
+@@ -4106,10 +4106,10 @@
+   struct addrinfo hints;
+   struct addrinfo res;
+   int err;
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_NO_IPV6_V6ONLY
+   int unset = 0;
+-#ifdef SOL_IP
+-  int level = SOL_IP;
++#ifdef SOL_IPV6
++  int level = SOL_IPV6;
+ #else
+   int level = IPPROTO_IPV6;
+ #endif
+@@ -4211,7 +4211,14 @@
+ #endif
+ #endif
+ #ifdef WITH_IPV6
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_IPV6_V6ONLY
++  if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&set, sizeof(int)))
++  { soap->errnum = soap_socket_errno(soap->master);
++    soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
++    return SOAP_INVALID_SOCKET;
++  }
++#endif
++#ifdef WITH_NO_IPV6_V6ONLY
+   if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&unset, sizeof(int)))
+   { soap->errnum = soap_socket_errno(soap->master);
+     soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.c gsoap-2.7/gsoap/stdsoap2.c
+--- gsoap-2.7.orig/gsoap/stdsoap2.c	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/stdsoap2.c	2011-08-28 10:05:28.103810289 +0200
+@@ -4106,10 +4106,10 @@
+   struct addrinfo hints;
+   struct addrinfo res;
+   int err;
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_NO_IPV6_V6ONLY
+   int unset = 0;
+-#ifdef SOL_IP
+-  int level = SOL_IP;
++#ifdef SOL_IPV6
++  int level = SOL_IPV6;
+ #else
+   int level = IPPROTO_IPV6;
+ #endif
+@@ -4211,7 +4211,14 @@
+ #endif
+ #endif
+ #ifdef WITH_IPV6
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_IPV6_V6ONLY
++  if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&set, sizeof(int)))
++  { soap->errnum = soap_socket_errno(soap->master);
++    soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
++    return SOAP_INVALID_SOCKET;
++  }
++#endif
++#ifdef WITH_NO_IPV6_V6ONLY
+   if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&unset, sizeof(int)))
+   { soap->errnum = soap_socket_errno(soap->master);
+     soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.cpp gsoap-2.7/gsoap/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/stdsoap2.cpp	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/stdsoap2.cpp	2011-08-28 10:05:28.108810225 +0200
+@@ -4106,10 +4106,10 @@
+   struct addrinfo hints;
+   struct addrinfo res;
+   int err;
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_NO_IPV6_V6ONLY
+   int unset = 0;
+-#ifdef SOL_IP
+-  int level = SOL_IP;
++#ifdef SOL_IPV6
++  int level = SOL_IPV6;
+ #else
+   int level = IPPROTO_IPV6;
+ #endif
+@@ -4211,7 +4211,14 @@
+ #endif
+ #endif
+ #ifdef WITH_IPV6
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_IPV6_V6ONLY
++  if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&set, sizeof(int)))
++  { soap->errnum = soap_socket_errno(soap->master);
++    soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
++    return SOAP_INVALID_SOCKET;
++  }
++#endif
++#ifdef WITH_NO_IPV6_V6ONLY
+   if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&unset, sizeof(int)))
+   { soap->errnum = soap_socket_errno(soap->master);
+     soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
+diff -ur gsoap-2.7.orig/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp gsoap-2.7/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp	2010-04-06 18:23:15.000000000 +0200
++++ gsoap-2.7/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp	2011-08-28 10:05:28.143809786 +0200
+@@ -4106,10 +4106,10 @@
+   struct addrinfo hints;
+   struct addrinfo res;
+   int err;
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_NO_IPV6_V6ONLY
+   int unset = 0;
+-#ifdef SOL_IP
+-  int level = SOL_IP;
++#ifdef SOL_IPV6
++  int level = SOL_IPV6;
+ #else
+   int level = IPPROTO_IPV6;
+ #endif
+@@ -4211,7 +4211,14 @@
+ #endif
+ #endif
+ #ifdef WITH_IPV6
+-#ifdef IPV6_V6ONLY
++#ifdef WITH_IPV6_V6ONLY
++  if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&set, sizeof(int)))
++  { soap->errnum = soap_socket_errno(soap->master);
++    soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);
++    return SOAP_INVALID_SOCKET;
++  }
++#endif
++#ifdef WITH_NO_IPV6_V6ONLY
+   if (setsockopt(soap->master, level, IPV6_V6ONLY, (char*)&unset, sizeof(int)))
+   { soap->errnum = soap_socket_errno(soap->master);
+     soap_set_receiver_error(soap, tcp_error(soap), "setsockopt IPV6_V6ONLY failed in soap_bind()", SOAP_TCP_ERROR);

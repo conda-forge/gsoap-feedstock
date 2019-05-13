@@ -1,0 +1,11 @@
+--- gsoap-2.7.orig/gsoap/src/symbol2.c	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/src/symbol2.c	2017-08-01 19:59:08.377849218 +0200
+@@ -9876,7 +9876,7 @@
+   }
+   if (is_fixedstring(typ))
+   { fprintf(fhead,"\nSOAP_FMAC3 char* SOAP_FMAC4 soap_in_%s(struct soap*, const char*, char[], const char*);", c_ident(typ)); 
+-    fprintf(fout,"\n\nSOAP_FMAC3 char* SOAP_FMAC4 soap_in_%s(struct soap *soap, const char *tag, char a[], const char *type)\n{\tif (soap_instring(soap, tag, &a, type, %s, 1, 0, %d))\n\treturn a;\treturn NULL;\n}", c_ident(typ), soap_type(typ), typ->width / ((Tnode*)typ->ref)->width - 1);
++    fprintf(fout,"\n\nSOAP_FMAC3 char* SOAP_FMAC4 soap_in_%s(struct soap *soap, const char *tag, char a[], const char *type)\n{\tchar *p;\n\tif (soap_instring(soap, tag, &p, type, %s, 1, 0, %d))\n\t\treturn strcpy(a, p);\n\treturn NULL;\n}", c_ident(typ), soap_type(typ), typ->width / ((Tnode*)typ->ref)->width - 1);
+     return;
+   }
+   switch(typ->type)

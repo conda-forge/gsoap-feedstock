@@ -1,0 +1,11 @@
+--- gsoap-2.7.orig/gsoap/plugin/wsrmapi.c	2010-04-06 18:22:32.000000000 +0200
++++ gsoap-2.7/gsoap/plugin/wsrmapi.c	2017-08-01 16:16:10.213479409 +0200
+@@ -2661,6 +2661,8 @@
+   DBGFUN1("soap_wsrm_msg_free", "num="SOAP_ULONG_FORMAT, p->num);
+   for (q = p->list; q; q = r)
+   { r = q->next;
++    if (q->buf)
++      SOAP_FREE(soap, q->buf);
+     SOAP_FREE(soap, q);
+   }
+   p->list = p->last = NULL;

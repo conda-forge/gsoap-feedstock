@@ -1,0 +1,22 @@
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.c gsoap-2.7/gsoap/stdsoap2.c
+--- gsoap-2.7.orig/gsoap/stdsoap2.c	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/stdsoap2.c	2018-04-18 18:33:13.989603307 +0200
+@@ -11490,7 +11490,6 @@
+       return soap->error = SOAP_EOF;
+     soap_unget(soap, soap_getchar(soap)); /* skip padding and get hdr */
+     DBGLOG(TEST, SOAP_MESSAGE(fdebug, "... From chunked\n"));
+-    return SOAP_OK;
+   }
+   s = (char*)tmp;
+   for (i = 12; i > 0; i--)
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.cpp gsoap-2.7/gsoap/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/stdsoap2.cpp	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/stdsoap2.cpp	2018-04-18 18:33:13.989603307 +0200
+@@ -11490,7 +11490,6 @@
+       return soap->error = SOAP_EOF;
+     soap_unget(soap, soap_getchar(soap)); /* skip padding and get hdr */
+     DBGLOG(TEST, SOAP_MESSAGE(fdebug, "... From chunked\n"));
+-    return SOAP_OK;
+   }
+   s = (char*)tmp;
+   for (i = 12; i > 0; i--)

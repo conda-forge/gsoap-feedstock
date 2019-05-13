@@ -1,0 +1,60 @@
+diff -ur gsoap-2.7.orig/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp gsoap-2.7/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp	2010-04-06 18:22:54.000000000 +0200
++++ gsoap-2.7/gsoap/samples/calc_vs2005/calc_vs2005/stdsoap2.cpp	2011-08-28 11:00:40.860395132 +0200
+@@ -3998,7 +3998,7 @@
+           { X509_EXTENSION *ext = X509_get_ext(peer, i);
+             const char *ext_str = OBJ_nid2sn(OBJ_obj2nid(X509_EXTENSION_get_object(ext)));
+             if (ext_str && !strcmp(ext_str, "subjectAltName"))
+-            { X509V3_EXT_METHOD *meth = X509V3_EXT_get(ext);
++            { X509V3_EXT_METHOD *meth = (X509V3_EXT_METHOD*)X509V3_EXT_get(ext);
+               void *ext_data;
+ #if (OPENSSL_VERSION_NUMBER >= 0x0090800fL)
+               const unsigned char *data;
+diff -ur gsoap-2.7.orig/gsoap/samples/wsse/stdsoap2.c gsoap-2.7/gsoap/samples/wsse/stdsoap2.c
+--- gsoap-2.7.orig/gsoap/samples/wsse/stdsoap2.c	2010-04-06 18:23:12.000000000 +0200
++++ gsoap-2.7/gsoap/samples/wsse/stdsoap2.c	2011-08-28 11:00:40.860395132 +0200
+@@ -3998,7 +3998,7 @@
+           { X509_EXTENSION *ext = X509_get_ext(peer, i);
+             const char *ext_str = OBJ_nid2sn(OBJ_obj2nid(X509_EXTENSION_get_object(ext)));
+             if (ext_str && !strcmp(ext_str, "subjectAltName"))
+-            { X509V3_EXT_METHOD *meth = X509V3_EXT_get(ext);
++            { X509V3_EXT_METHOD *meth = (X509V3_EXT_METHOD*)X509V3_EXT_get(ext);
+               void *ext_data;
+ #if (OPENSSL_VERSION_NUMBER >= 0x0090800fL)
+               const unsigned char *data;
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.c gsoap-2.7/gsoap/stdsoap2.c
+--- gsoap-2.7.orig/gsoap/stdsoap2.c	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/stdsoap2.c	2011-08-28 11:00:40.860395132 +0200
+@@ -3998,7 +3998,7 @@
+           { X509_EXTENSION *ext = X509_get_ext(peer, i);
+             const char *ext_str = OBJ_nid2sn(OBJ_obj2nid(X509_EXTENSION_get_object(ext)));
+             if (ext_str && !strcmp(ext_str, "subjectAltName"))
+-            { X509V3_EXT_METHOD *meth = X509V3_EXT_get(ext);
++            { X509V3_EXT_METHOD *meth = (X509V3_EXT_METHOD*)X509V3_EXT_get(ext);
+               void *ext_data;
+ #if (OPENSSL_VERSION_NUMBER >= 0x0090800fL)
+               const unsigned char *data;
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.cpp gsoap-2.7/gsoap/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/stdsoap2.cpp	2010-04-06 18:23:14.000000000 +0200
++++ gsoap-2.7/gsoap/stdsoap2.cpp	2011-08-28 11:00:40.860395132 +0200
+@@ -3998,7 +3998,7 @@
+           { X509_EXTENSION *ext = X509_get_ext(peer, i);
+             const char *ext_str = OBJ_nid2sn(OBJ_obj2nid(X509_EXTENSION_get_object(ext)));
+             if (ext_str && !strcmp(ext_str, "subjectAltName"))
+-            { X509V3_EXT_METHOD *meth = X509V3_EXT_get(ext);
++            { X509V3_EXT_METHOD *meth = (X509V3_EXT_METHOD*)X509V3_EXT_get(ext);
+               void *ext_data;
+ #if (OPENSSL_VERSION_NUMBER >= 0x0090800fL)
+               const unsigned char *data;
+diff -ur gsoap-2.7.orig/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp gsoap-2.7/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp	2010-04-06 18:23:15.000000000 +0200
++++ gsoap-2.7/gsoap/VisualStudio2005/wsdl2h/wsdl2h/stdsoap2.cpp	2011-08-28 11:00:40.860395132 +0200
+@@ -3998,7 +3998,7 @@
+           { X509_EXTENSION *ext = X509_get_ext(peer, i);
+             const char *ext_str = OBJ_nid2sn(OBJ_obj2nid(X509_EXTENSION_get_object(ext)));
+             if (ext_str && !strcmp(ext_str, "subjectAltName"))
+-            { X509V3_EXT_METHOD *meth = X509V3_EXT_get(ext);
++            { X509V3_EXT_METHOD *meth = (X509V3_EXT_METHOD*)X509V3_EXT_get(ext);
+               void *ext_data;
+ #if (OPENSSL_VERSION_NUMBER >= 0x0090800fL)
+               const unsigned char *data;

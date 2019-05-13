@@ -1,0 +1,50 @@
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.c gsoap-2.7/gsoap/stdsoap2.c
+--- gsoap-2.7.orig/gsoap/stdsoap2.c	2019-01-18 17:39:50.937217808 +0100
++++ gsoap-2.7/gsoap/stdsoap2.c	2019-01-18 17:43:34.473849967 +0100
+@@ -12214,11 +12214,12 @@
+ #ifdef WITH_COOKIES
+ /******************************************************************************/
+ SOAP_FMAC1
+-size_t
++ssize_t
+ SOAP_FMAC2
+-soap_encode_cookie(const char *s, char *t, size_t len)
++soap_encode_cookie(const char *s, char *t, ssize_t len)
+ { register int c;
+-  register size_t n = len;
++  register ssize_t n = len;
++  if (n <= 0) return 0;
+   while ((c = *s++) && --n > 0)
+   { if (c > ' ' && c < 128 && !strchr("()<>@,;:\\\"/[]?={}#!$&'*+", c))
+       *t++ = c;
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.cpp gsoap-2.7/gsoap/stdsoap2.cpp
+--- gsoap-2.7.orig/gsoap/stdsoap2.cpp	2019-01-18 17:39:50.940217776 +0100
++++ gsoap-2.7/gsoap/stdsoap2.cpp	2019-01-18 17:43:34.473849967 +0100
+@@ -12214,11 +12214,12 @@
+ #ifdef WITH_COOKIES
+ /******************************************************************************/
+ SOAP_FMAC1
+-size_t
++ssize_t
+ SOAP_FMAC2
+-soap_encode_cookie(const char *s, char *t, size_t len)
++soap_encode_cookie(const char *s, char *t, ssize_t len)
+ { register int c;
+-  register size_t n = len;
++  register ssize_t n = len;
++  if (n <= 0) return 0;
+   while ((c = *s++) && --n > 0)
+   { if (c > ' ' && c < 128 && !strchr("()<>@,;:\\\"/[]?={}#!$&'*+", c))
+       *t++ = c;
+diff -ur gsoap-2.7.orig/gsoap/stdsoap2.h gsoap-2.7/gsoap/stdsoap2.h
+--- gsoap-2.7.orig/gsoap/stdsoap2.h	2019-01-18 17:39:50.918218009 +0100
++++ gsoap-2.7/gsoap/stdsoap2.h	2019-01-18 17:42:29.241540755 +0100
+@@ -2387,7 +2387,7 @@
+ 
+ #ifdef WITH_COOKIES
+ SOAP_FMAC1 void SOAP_FMAC2 soap_getcookies(struct soap *soap, const char *val);
+-SOAP_FMAC1 size_t SOAP_FMAC2 soap_encode_cookie(const char*, char*, size_t);
++SOAP_FMAC1 ssize_t SOAP_FMAC2 soap_encode_cookie(const char*, char*, ssize_t);
+ SOAP_FMAC1 extern struct soap_cookie* SOAP_FMAC2 soap_set_cookie(struct soap*, const char*, const char*, const char*, const char*);
+ SOAP_FMAC1 extern struct soap_cookie* SOAP_FMAC2 soap_cookie(struct soap*, const char*, const char*, const char*);
+ SOAP_FMAC1 extern char* SOAP_FMAC2 soap_cookie_value(struct soap*, const char*, const char*, const char*);

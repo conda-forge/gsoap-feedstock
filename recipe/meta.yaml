@@ -1,5 +1,5 @@
 {% set name = "gsoap" %}
-{% set version = "2.8.83" %}
+{% set version = "2.7.13" %}
 
 package:
   name: {{ name|lower }}
@@ -7,8 +7,12 @@ package:
 
 source:
   url: https://downloads.sourceforge.net/project/gsoap2/gsoap-{{ version.split('.')[0] }}.{{ version.split('.')[1] }}/gsoap_{{ version }}.zip
-  sha256: 879ab40d40e379add9d3526c0592f891eaea16f7487be160157dbc40216e1633
+  sha256: 88f317fac843b29c1a1332c02a25b64b7dfd93ac9bfa093c3b0eb0dc0c9aadf3
   patches:
+    - patches/gsoap-ipv6.patch
+    - patches/gsoap-iostream.patch
+    - patches/gsoap-openssl.patch
+    - patches/gsoap-pad.patch
     - 0001-Avoid-using-entire-std-namespace.patch
 
 build:
@@ -19,12 +23,15 @@ requirements:
   build:
     - {{ compiler('cxx') }}
     - autoconf
+    - automake
     - bison
     - flex
     - gawk  # [unix]
     - make
+    - libtool
+    - sed
   host:
-    - openssl
+    - openssl 1.0.2r
     - zlib
 
 test:
@@ -35,7 +42,7 @@ about:
   home: https://www.genivia.com/
   license: GPL-2.0
   license_family: GPL
-  license_file: GPLv2_license.txt
+  license_file: LICENSE.txt
   summary: 'The most advanced C/C++ autocoding tools for XML Web service APIs and other XML applications'
 
   description: |
