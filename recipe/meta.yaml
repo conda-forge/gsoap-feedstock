@@ -1,5 +1,5 @@
 {% set name = "gsoap" %}
-{% set version = "2.8.83" %}
+{% set version = "2.8.84" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://downloads.sourceforge.net/project/gsoap2/gsoap-{{ version.split('.')[0] }}.{{ version.split('.')[1] }}/gsoap_{{ version }}.zip
-  sha256: 879ab40d40e379add9d3526c0592f891eaea16f7487be160157dbc40216e1633
+  sha256: 4e9d13a6fb641ab076de94590452fb2e8339f7a6a58be8f0dc640b274495ed87
   patches:
     - 0001-Avoid-using-entire-std-namespace.patch
 
