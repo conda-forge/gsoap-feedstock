@@ -8,8 +8,6 @@ package:
 source:
   url: https://downloads.sourceforge.net/project/gsoap2/gsoap-{{ version.split('.')[0] }}.{{ version.split('.')[1] }}/gsoap_{{ version }}.zip
   sha256: 51d8d654a85e209dab972c801a05764fe0c0a54a084f26206663604671ef8ba6
-  patches:
-    - 0001-Avoid-using-entire-std-namespace.patch
 
 build:
   number: 0
