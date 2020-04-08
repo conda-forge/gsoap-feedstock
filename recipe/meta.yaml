@@ -31,8 +31,7 @@ test:
 
 about:
   home: https://www.genivia.com/
-  license: GPL-2.0
-  license_family: GPL
+  license: GPL-2.0-only
   license_file: GPLv2_license.txt
   summary: The most advanced C/C++ autocoding tools for XML Web service APIs and other XML applications
 
