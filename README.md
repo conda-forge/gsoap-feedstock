@@ -5,7 +5,7 @@ Home: https://www.genivia.com/
 
 Package license: GPL-2.0-only
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: The most advanced C/C++ autocoding tools for XML Web service APIs and other XML applications
 
