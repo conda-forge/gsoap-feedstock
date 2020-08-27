@@ -10,7 +10,7 @@ source:
   sha256: 4e74838baf5437e95ae17aa3efb48bd0621f483bff4424f6255fcf327ff80765
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -25,9 +25,31 @@ requirements:
     - openssl
     - zlib
 
-test:
-  commands:
-    - soapcpp2 -h
+outputs:
+  - name: gsoap_abi
+    build:
+      run_constrained:
+        - {{ pin_subpackage('gsoap', max_pin='x.x.x.x.x.x.x.x.x.x') }}
+
+  - name: gsoap
+    script: build_gsoap.sh
+    build:
+      run_exports:
+        - {{ pin_subpackage('gsoap_abi', max_pin='x.x.x.x.x.x.x.x.x.x') }}
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - autoconf
+        - bison
+        - flex
+        - gawk  # [unix]
+        - make
+      host:
+        - openssl
+        - zlib
+    test:
+      commands:
+        - soapcpp2 -h
 
 about:
   home: https://www.genivia.com/
