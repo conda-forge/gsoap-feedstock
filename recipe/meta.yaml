@@ -16,7 +16,7 @@ source:
     - 0001-Avoid-using-entire-std-namespace.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
@@ -31,7 +31,7 @@ requirements:
     - libtool
     - sed
   host:
-    - openssl 1.0.2r
+    - openssl
     - zlib
 
 test:
@@ -40,8 +40,7 @@ test:
 
 about:
   home: https://www.genivia.com/
-  license: GPL-2.0
-  license_family: GPL
+  license: GPL-2.0-or-later
   license_file: LICENSE.txt
   summary: 'The most advanced C/C++ autocoding tools for XML Web service APIs and other XML applications'
 
