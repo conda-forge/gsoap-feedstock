@@ -92,6 +92,7 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gsoap-green.svg)](https://anaconda.org/conda-forge/gsoap) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gsoap.svg)](https://anaconda.org/conda-forge/gsoap) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gsoap.svg)](https://anaconda.org/conda-forge/gsoap) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gsoap.svg)](https://anaconda.org/conda-forge/gsoap) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gsoap_abi-green.svg)](https://anaconda.org/conda-forge/gsoap_abi) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gsoap_abi.svg)](https://anaconda.org/conda-forge/gsoap_abi) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gsoap_abi.svg)](https://anaconda.org/conda-forge/gsoap_abi) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gsoap_abi.svg)](https://anaconda.org/conda-forge/gsoap_abi) |
 
 Installing gsoap
 ================
@@ -102,10 +103,10 @@ Installing `gsoap` from the `conda-forge` channel can be achieved by adding `con
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `gsoap` can be installed with:
+Once the `conda-forge` channel has been enabled, `gsoap, gsoap_abi` can be installed with:
 
 ```
-conda install gsoap
+conda install gsoap gsoap_abi
 ```
 
 It is possible to list all of the versions of `gsoap` available on your platform with:
