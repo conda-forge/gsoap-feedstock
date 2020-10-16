@@ -5,9 +5,13 @@ Home: https://www.genivia.com/
 
 Package license: GPL-2.0-only
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/gsoap-feedstock/blob/master/LICENSE.txt)
 
 Summary: The most advanced C/C++ autocoding tools for XML Web service APIs and other XML applications
+
+Development: https://www.genivia.com/dev.html
+
+Documentation: https://www.genivia.com/docs.html
 
 gSOAP is the top-rated agile development framework for C/C++ Web service
 APIs and XML. Join our rapidly growing world-wide customer base with
