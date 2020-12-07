@@ -15,10 +15,17 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION-}" == "1" ]]; then
     mkdir -p "${SRC_DIR}"
     cp -rp "${SRC_DIR}/sources" "${SRC_DIR}/sources-for-host"
     cd "${SRC_DIR}/sources-for-host"
+
     export CC_FOR_TARGET=$CC
     export CC=$CC_FOR_BUILD
+    export CFLAGS_FOR_TARGET=$CFLAGS
+    export CFLAGS=${CFLAGS//${PREFIX}/${BUILD_PREFIX}}
+
     export CXX_FOR_TARGET=$CXX
     export CXX=$CXX_FOR_BUILD
+    export CXXFLAGS_FOR_TARGET=$CXXFLAGS
+    export CXXFLAGS=${CXXFLAGS//${PREFIX}/${BUILD_PREFIX}}
+
     ./configure \
         --prefix="${BUILD_PREFIX}" \
         --with-openssl="${BUILD_PREFIX}/" \
