@@ -26,6 +26,9 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION-}" == "1" ]]; then
     export CXXFLAGS_FOR_TARGET=$CXXFLAGS
     export CXXFLAGS=${CXXFLAGS//${PREFIX}/${BUILD_PREFIX}}
 
+    export LDFLAGS_FOR_TARGET=$LDFLAGS
+    export LDFLAGS=${LDFLAGS//${PREFIX}/${BUILD_PREFIX}}
+
     ./configure \
         --prefix="${BUILD_PREFIX}" \
         --with-openssl="${BUILD_PREFIX}/" \
@@ -35,7 +38,10 @@ if [[ "${CONDA_BUILD_CROSS_COMPILATION-}" == "1" ]]; then
     make -j1
     cd "${SRC_DIR}/sources"
     export CC=$CC_FOR_TARGET
+    export CFLAGS=$CFLAGS_FOR_TARGET
     export CXX=$CXX_FOR_TARGET
+    export CXXFLAGS=$CXXFLAGS_FOR_TARGET
+    export LDFLAGS=$LDFLAGS_FOR_TARGET
     MAKE_FLAGS+=( SOAP="${SRC_DIR}/sources-for-host/gsoap/src/soapcpp2" )
 fi
 
