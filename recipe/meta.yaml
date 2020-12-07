@@ -8,6 +8,7 @@ package:
 source:
   url: https://downloads.sourceforge.net/project/gsoap2/gsoap-{{ version.split('.')[0] }}.{{ version.split('.')[1] }}/gsoap_{{ version }}.zip
   sha256: 27de421db6f8abfc443f2e1d5ccdcbd7e6373095b2c72df2b17f50a9c5f80d14
+  folder: sources
 
 build:
   number: 0
@@ -15,6 +16,7 @@ build:
 
 requirements:
   build:
+    - gnuconfig  # [unix]
     - {{ compiler('cxx') }}
     - autoconf
     - bison
@@ -38,6 +40,7 @@ outputs:
         - {{ pin_subpackage('gsoap_abi', max_pin='x.x.x.x.x.x.x.x.x.x') }}
     requirements:
       build:
+        - gnuconfig  # [unix]
         - {{ compiler('cxx') }}
         - autoconf
         - bison
