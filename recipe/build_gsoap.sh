@@ -10,7 +10,7 @@ autoconf
 
 declare -a MAKE_FLAGS
 
-if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
+if [[ "${CONDA_BUILD_CROSS_COMPILATION-}" == "1" ]]; then
     # Build soapcpp2 for the host so it can be used during the build
     mkdir -p "${SRC_DIR}"
     cp -rp "${SRC_DIR}/sources" "${SRC_DIR}/sources-for-host"
