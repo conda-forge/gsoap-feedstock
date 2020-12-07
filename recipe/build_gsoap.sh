@@ -39,6 +39,6 @@ fi
     --enable-ipv6
 
 # Using multiple cores fails so explicitly use -j1
-make -j1 "${MAKE_FLAGS[@]-}"
+make -j1 ${MAKE_FLAGS[@]+"${MAKE_FLAGS[@]}"}
 # make -j${CPU_COUNT}
 make install
