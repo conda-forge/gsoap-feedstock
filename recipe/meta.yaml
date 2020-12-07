@@ -50,6 +50,9 @@ outputs:
         - flex
         - gawk  # [unix]
         - make
+        # Used for building a host compatible gsoap
+        - openssl  # [build_platform != target_platform]
+        - zlib     # [build_platform != target_platform]
       host:
         - openssl
         - zlib
