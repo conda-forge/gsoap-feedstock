@@ -1,13 +1,13 @@
 {% set name = "gsoap" %}
-{% set version = "2.8.110" %}
+{% set version = "2.8.117" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://downloads.sourceforge.net/project/gsoap2/gsoap-{{ version.split('.')[0] }}.{{ version.split('.')[1] }}/gsoap_{{ version }}.zip
-  sha256: ec8826265faca3c59756f8b5d637e06b7f4ed4a984243caa3f53db4ec71e577a
+  url: https://downloads.sourceforge.net/gsoap2/gsoap_{{ version }}.zip
+  sha256: 7cadf8808cfd982629948fe09e4fa6cd18e23cafd40df0aaaff1b1f5b695c442
   folder: sources
 
 build:
