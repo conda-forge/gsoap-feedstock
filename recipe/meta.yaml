@@ -1,28 +1,34 @@
 {% set name = "gsoap" %}
-{% set version = "2.8.110" %}
+{% set version = "2.8.117" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://downloads.sourceforge.net/project/gsoap2/gsoap-{{ version.split('.')[0] }}.{{ version.split('.')[1] }}/gsoap_{{ version }}.zip
-  sha256: ec8826265faca3c59756f8b5d637e06b7f4ed4a984243caa3f53db4ec71e577a
+  url: https://downloads.sourceforge.net/gsoap2/gsoap_{{ version }}.zip
+  sha256: 7cadf8808cfd982629948fe09e4fa6cd18e23cafd40df0aaaff1b1f5b695c442
   folder: sources
+  patches:
+    - gsoap-libtool.patch
 
 build:
   number: 0
   skip: true  # [win]
+  run_exports:
+    - {{ pin_subpackage('gsoap', max_pin='x.x.x') }}
 
 requirements:
   build:
     - gnuconfig  # [unix]
     - {{ compiler('cxx') }}
     - autoconf
+    - automake
     - bison
     - flex
     - gawk  # [unix]
     - make
+    - libtool  # [unix]
     # Used for building a host compatible gsoap
     - openssl  # [build_platform != target_platform]
     - zlib     # [build_platform != target_platform]
@@ -30,35 +36,21 @@ requirements:
     - openssl
     - zlib
 
-outputs:
-  - name: gsoap_abi
-    build:
-      run_constrained:
-        - {{ pin_subpackage('gsoap', max_pin='x.x.x.x.x.x.x.x.x.x') }}
-
-  - name: gsoap
-    script: build_gsoap.sh
-    build:
-      run_exports:
-        - {{ pin_subpackage('gsoap_abi', max_pin='x.x.x.x.x.x.x.x.x.x') }}
-    requirements:
-      build:
-        - gnuconfig  # [unix]
-        - {{ compiler('cxx') }}
-        - autoconf
-        - bison
-        - flex
-        - gawk  # [unix]
-        - make
-        # Used for building a host compatible gsoap
-        - openssl  # [build_platform != target_platform]
-        - zlib     # [build_platform != target_platform]
-      host:
-        - openssl
-        - zlib
-    test:
-      commands:
-        - soapcpp2 -h
+test:
+  commands:
+    - soapcpp2 -h
+    - test ! -f "${PREFIX}/lib/libgsoap++.a"
+    - test ! -f "${PREFIX}/lib/libgsoap.a"
+    - test ! -f "${PREFIX}/lib/libgsoapck++.a"
+    - test ! -f "${PREFIX}/lib/libgsoapck.a"
+    - test ! -f "${PREFIX}/lib/libgsoapssl++.a"
+    - test ! -f "${PREFIX}/lib/libgsoapssl.a"
+    - test -f "${PREFIX}/lib/libgsoap++${SHLIB_EXT}"
+    - test -f "${PREFIX}/lib/libgsoap${SHLIB_EXT}"
+    - test -f "${PREFIX}/lib/libgsoapck++${SHLIB_EXT}"
+    - test -f "${PREFIX}/lib/libgsoapck${SHLIB_EXT}"
+    - test -f "${PREFIX}/lib/libgsoapssl++${SHLIB_EXT}"
+    - test -f "${PREFIX}/lib/libgsoapssl${SHLIB_EXT}"
 
 about:
   home: https://www.genivia.com/
