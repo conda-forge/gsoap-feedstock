@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-set -eu
+set -eux
 
 cd sources
 
 # Get an updated config.sub and config.guess
 cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
-autoconf
+autoreconf --install --force
 
 declare -a MAKE_FLAGS
 
@@ -53,5 +53,7 @@ fi
 
 # Using multiple cores fails so explicitly use -j1
 make -j1 ${MAKE_FLAGS[@]+"${MAKE_FLAGS[@]}"}
-# make -j${CPU_COUNT}
+
 make install
+
+rm "${PREFIX}/lib"/libgsoap*.a
