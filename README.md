@@ -34,13 +34,6 @@ Current build status
         <img alt="macOS" src="https://img.shields.io/travis/com/conda-forge/gsoap-feedstock/master.svg?label=macOS">
       </a>
     </td>
-  </tr><tr>
-    <td>Drone</td>
-    <td>
-      <a href="https://cloud.drone.io/conda-forge/gsoap-feedstock">
-        <img alt="linux" src="https://img.shields.io/drone/build/conda-forge/gsoap-feedstock/master.svg?label=Linux">
-      </a>
-    </td>
   </tr>
     
   <tr>
@@ -138,7 +131,6 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gsoap-green.svg)](https://anaconda.org/conda-forge/gsoap) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gsoap.svg)](https://anaconda.org/conda-forge/gsoap) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gsoap.svg)](https://anaconda.org/conda-forge/gsoap) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gsoap.svg)](https://anaconda.org/conda-forge/gsoap) |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-gsoap_abi-green.svg)](https://anaconda.org/conda-forge/gsoap_abi) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gsoap_abi.svg)](https://anaconda.org/conda-forge/gsoap_abi) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gsoap_abi.svg)](https://anaconda.org/conda-forge/gsoap_abi) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gsoap_abi.svg)](https://anaconda.org/conda-forge/gsoap_abi) |
 
 Installing gsoap
 ================
@@ -150,10 +142,10 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `gsoap, gsoap_abi` can be installed with:
+Once the `conda-forge` channel has been enabled, `gsoap` can be installed with:
 
 ```
-conda install gsoap gsoap_abi
+conda install gsoap
 ```
 
 It is possible to list all of the versions of `gsoap` available on your platform with:
@@ -166,7 +158,8 @@ conda search gsoap --channel conda-forge
 About conda-forge
 =================
 
-[![Powered by NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](http://numfocus.org)
+[![Powered by
+NumFOCUS](https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://numfocus.org)
 
 conda-forge is a community-led conda channel of installable packages.
 In order to provide high-quality builds, the process has been automated into the
